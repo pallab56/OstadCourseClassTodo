@@ -1,3 +1,4 @@
+import 'package:classtodoapp/screens/main_nav_screen.dart';
 import 'package:classtodoapp/screens/signup_screen.dart';
 import 'package:classtodoapp/widgets/screen_background.dart';
 import 'package:flutter/gestures.dart';
@@ -39,7 +40,12 @@ class _LogInScreenState extends State<LogInScreen> {
           ),
           SizedBox(height: 25),
           FilledButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (context) => MainNavScreen()),
+              );
+            },
             child: Icon(Icons.navigate_next_outlined, size: 22),
           ),
           forgotText(),
