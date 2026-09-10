@@ -1,37 +1,39 @@
-import 'package:classtodoapp/screens/signup_screen.dart';
+import 'package:classtodoapp/screens/login_screen.dart';
 import 'package:classtodoapp/widgets/screen_background.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
-
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      body: ScreenBackground(child: loginBodyUi()),
+      body: ScreenBackground(child: signUpBodyUi()),
     );
   }
 
-  Widget loginBodyUi() {
+  Widget signUpBodyUi() {
     return Padding(
       padding: const EdgeInsets.all(30.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(height: MediaQuery.sizeOf(context).height * .3),
-          Text(
-            "Get Started With",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
+          SizedBox(height: MediaQuery.sizeOf(context).height * .15),
+          Text("Join With Us", style: Theme.of(context).textTheme.titleLarge),
           SizedBox(height: 20),
           TextFormField(decoration: InputDecoration(hintText: 'Email')),
+          SizedBox(height: 15),
+          TextFormField(decoration: InputDecoration(hintText: 'First Name')),
+          SizedBox(height: 15),
+          TextFormField(decoration: InputDecoration(hintText: 'Last Name')),
+          SizedBox(height: 15),
+          TextFormField(decoration: InputDecoration(hintText: 'Mobile')),
           SizedBox(height: 15),
           TextFormField(
             obscureText: true,
@@ -55,29 +57,20 @@ class _LogInScreenState extends State<LogInScreen> {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           SizedBox(height: 50),
-
-          TextButton(
-            onPressed: () {},
-            child: Text(
-              'Forget Password ?',
-              style: TextStyle(color: Colors.grey, fontWeight: FontWeight.w500),
-            ),
-          ),
-
           RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
               style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
               children: [
                 TextSpan(
-                  text: "Don't have an account? ",
+                  text: "Already have an account? ",
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 TextSpan(
-                  text: 'Sign Up',
+                  text: 'Sign In',
                   style: TextStyle(
                     color: Colors.green,
                     fontWeight: FontWeight.w700,
@@ -86,7 +79,7 @@ class _LogInScreenState extends State<LogInScreen> {
                     ..onTap = () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => SignUpScreen()),
+                        MaterialPageRoute(builder: (context) => LogInScreen()),
                       );
                     },
                 ),
