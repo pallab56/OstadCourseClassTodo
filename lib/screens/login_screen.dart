@@ -12,6 +12,14 @@ class LogInScreen extends StatefulWidget {
 }
 
 class _LogInScreenState extends State<LogInScreen> {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final _formkey = GlobalKey<FormState>();
+  
+  onTapLogin()async{
+
+  }
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,33 +31,78 @@ class _LogInScreenState extends State<LogInScreen> {
   Widget loginBodyUi() {
     return Padding(
       padding: const EdgeInsets.all(30.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: MediaQuery.sizeOf(context).height * .3),
-          Text(
-            "Get Started With",
-            style: Theme.of(context).textTheme.titleLarge,
-          ),
-          SizedBox(height: 20),
-          TextFormField(decoration: InputDecoration(hintText: 'Email')),
-          SizedBox(height: 15),
-          TextFormField(
-            obscureText: true,
-            decoration: InputDecoration(hintText: 'password'),
-          ),
-          SizedBox(height: 25),
-          FilledButton(
-            onPressed: () {
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (context) => MainNavScreen()),
-              );
-            },
-            child: Icon(Icons.navigate_next_outlined, size: 22),
-          ),
-          forgotText(),
-        ],
+      child: Form(
+        key: _formkey,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: MediaQuery.sizeOf(context).height * .3),
+            Text(
+              "Get Started With",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            SizedBox(height: 20),
+            TextFormField(
+              controller: emailController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Email is required';
+                }
+                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                if (!emailRegex.hasMatch(value)) {
+                  return 'Enter a valid Email Address';
+                }
+                return null;
+              },
+              decoration: InputDecoration(hintText: 'Email')),
+            SizedBox(height: 15),
+            TextFormField(
+              controller: passwordController,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Password Is required';
+                }
+                if (value.length < 8) {
+                  return 'Password length atleast 8';
+                }
+                if (value.length > 15) {
+                  return 'Password length atlmost 15';
+                }
+                if (!RegExp(r'[A-Z]').hasMatch(value)) {
+                  return 'Password must contain an uppercase letter';
+                }
+                if (!RegExp(r'[a-z]').hasMatch(value)) {
+                  return 'Password must contain a lowercase letter';
+                }
+                if (!RegExp(r'[0-9]').hasMatch(value)) {
+                  return 'Password must contain a number';
+                }
+                if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+                  return 'Password must contain a special character';
+                }
+                return null;
+              },
+              obscureText: true,
+              decoration: InputDecoration(hintText: 'password'),
+            ),
+            SizedBox(height: 25),
+            FilledButton(
+              onPressed: () {
+
+                if(_formkey.currentState!.validate())
+                {
+                  Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => MainNavScreen()),
+                );
+                }
+                
+              },
+              child: Icon(Icons.navigate_next_outlined, size: 22),
+            ),
+            forgotText(),
+          ],
+        ),
       ),
     );
   }
