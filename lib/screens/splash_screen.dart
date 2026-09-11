@@ -1,4 +1,6 @@
+import 'package:classtodoapp/controller/auth_controller.dart';
 import 'package:classtodoapp/screens/login_screen.dart';
+import 'package:classtodoapp/screens/main_nav_screen.dart';
 import 'package:classtodoapp/utils/asset_path.dart';
 import 'package:classtodoapp/widgets/screen_background.dart';
 import 'package:flutter/material.dart';
@@ -19,9 +21,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future moveToNextScreen() async {
     await Future.delayed(Duration(seconds: 1));
+
+    // print(AuthController.token);
+    // print(AuthController.userData);
+
+    AuthController.getUserData();
+    bool isLogin = await AuthController.isUserLogin();
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (_) => LogInScreen()),
+      MaterialPageRoute(builder: (_) =>isLogin?MainNavScreen() : LogInScreen()),
     );
   }
 
