@@ -1,5 +1,10 @@
+import 'package:classtodoapp/controller/auth_controller.dart';
+import 'package:classtodoapp/models/api_response.dart';
+import 'package:classtodoapp/models/user_model.dart';
 import 'package:classtodoapp/screens/main_nav_screen.dart';
 import 'package:classtodoapp/screens/signup_screen.dart';
+import 'package:classtodoapp/service/api_caller.dart';
+import 'package:classtodoapp/utils/app_url.dart';
 import 'package:classtodoapp/widgets/screen_background.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +20,9 @@ class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final _formkey = GlobalKey<FormState>();
-  
-  onTapLogin()async{
 
-  }
-  
+  onTapLogin() async {}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +57,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 }
                 return null;
               },
-              decoration: InputDecoration(hintText: 'Email')),
+              decoration: InputDecoration(hintText: 'Email'),
+            ),
             SizedBox(height: 15),
             TextFormField(
               controller: passwordController,
@@ -87,16 +91,30 @@ class _LogInScreenState extends State<LogInScreen> {
             ),
             SizedBox(height: 25),
             FilledButton(
-              onPressed: () {
+              onPressed: () async {
+                if (_formkey.currentState!.validate()) {
+                  ApiResponse response = await ApiCaller.postRequest(
+                    url: AppUrl.loginUrl,
+                    body: {
+                      "email": emailController.text,
+                      "password": passwordController.text,
+                    },
+                  );
 
-                if(_formkey.currentState!.validate())
-                {
-                  Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder: (context) => MainNavScreen()),
-                );
+                  if (response.isScuccess) {
+                    UserModel userModel = UserModel.fromJson(
+                      response.responseData['data'],
+                    );
+
+                     String token = response.responseData['token'];
+
+                    AuthController.saveUserData(userModel, token);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainNavScreen()),
+                    );
+                  }
                 }
-                
               },
               child: Icon(Icons.navigate_next_outlined, size: 22),
             ),
