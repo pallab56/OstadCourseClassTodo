@@ -9,4 +9,5 @@ class AppUrl {
   static String deleteTaskUrl(String id) => "$baseUrl/deleteTask/$id";
   static String updateTaskStaus(String id, String status) =>
       "$baseUrl/updateTaskStatus/$id/$status";
+  static String updateProfileUrl = "$baseUrl/ProfileUpdate";
 }
