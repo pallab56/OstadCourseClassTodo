@@ -59,7 +59,12 @@ class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
                   return TaskCard(
                     taskmodel: taskList[index],
                     cardColor: Colors.purple,
-                    refreshParent: () {},
+                    refreshParent: () {
+                      getTaskList(status: "Progress");
+                      setState(() {
+                        
+                      });
+                    },
                   );
                 },
               ),

@@ -2,6 +2,7 @@ import 'package:classtodoapp/models/api_response.dart';
 import 'package:classtodoapp/screens/main_nav_screen.dart';
 import 'package:classtodoapp/service/api_caller.dart';
 import 'package:classtodoapp/utils/app_url.dart';
+import 'package:classtodoapp/widgets/main_app_bar.dart';
 import 'package:classtodoapp/widgets/text_field.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(backgroundColor: Colors.transparent),
+      appBar: MainAppBar(),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(

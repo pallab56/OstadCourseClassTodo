@@ -59,7 +59,13 @@ class _CompleteTaskScreenState extends State<CompleteTaskScreen> {
                   return TaskCard(
                     taskmodel: taskList[index],
                     cardColor: Colors.green,
-                    refreshParent: () {},
+                    refreshParent: () {
+                      
+                      getTaskList(status: "Completed");
+                      setState(() {
+                        
+                      });
+                    },
                   );
                 },
               ),

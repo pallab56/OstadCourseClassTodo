@@ -42,7 +42,7 @@ class _CancelTaskScreenState extends State<CancelTaskScreen> {
     // TODO: implement initState
     super.initState();
 
-    getTaskList(status: "Completed");
+    getTaskList(status: "Cancelled");
   }
   @override
   Widget build(BuildContext context) {
@@ -59,7 +59,12 @@ class _CancelTaskScreenState extends State<CancelTaskScreen> {
                   return TaskCard(
                     taskmodel: taskList[index],
                     cardColor: Colors.red,
-                    refreshParent: () {},
+                    refreshParent: () {
+                       getTaskList(status: "Cancelled");
+                      setState(() {
+                        
+                      });
+                    },
                   );
                 },
               ),
