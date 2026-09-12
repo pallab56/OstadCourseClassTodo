@@ -96,7 +96,13 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
                   return TaskCard(
                     taskmodel: taskList[index],
                     cardColor: Colors.blue,
-                    refreshParent: (){},
+                    refreshParent: () {
+                      getAllTaskCount();
+                      getTaskList(status: "New");
+                      setState(() {
+                        
+                      });
+                    },
                   );
                 },
               ),
