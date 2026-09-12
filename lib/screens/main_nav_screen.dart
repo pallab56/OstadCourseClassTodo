@@ -52,6 +52,9 @@ class _MainNavScreenState extends State<MainNavScreen> {
       ),
 
       body: screens[selectedIndex],
+      floatingActionButton: FloatingActionButton(onPressed:(){},
+      child:Icon(Icons.add),
+      ),
       bottomNavigationBar: NavigationBar(
         onDestinationSelected: (int index) {
           selectedIndex = index;

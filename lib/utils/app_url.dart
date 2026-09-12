@@ -3,5 +3,7 @@ class AppUrl {
   static String signUpUrl = "$baseUrl/Registration";
   static String loginUrl = "$baseUrl/Login";
   static String taskStatusCountUrl = "$baseUrl/taskStatusCount";
-  static String listTaskByStatusUrl(String status) => "$baseUrl/listTaskByStatus/$status";
+  static String listTaskByStatusUrl(String status) =>
+      "$baseUrl/listTaskByStatus/$status";
+  static String createTaskUrl = "$baseUrl/createTask";
 }
