@@ -8,7 +8,6 @@ import 'package:classtodoapp/widgets/main_app_bar.dart';
 import 'package:classtodoapp/widgets/screen_background.dart';
 import 'package:classtodoapp/widgets/text_field.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 class UpdateProfileScreen extends StatefulWidget {
   const UpdateProfileScreen({super.key});
@@ -48,16 +47,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         email: emailController.text,
       );
       AuthController.updateUserData(model);
-      setState(() {
-        
-      });
-      //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>MainNavScreen()));
-      // Navigator.pushAndRemoveUntil(context, newRoute, )
-    Navigator.pushAndRemoveUntil(
-  context,
-  MaterialPageRoute(builder: (context) => MainNavScreen()),
-  (route) => false,   // removes ALL previous routes, not just the current one
-);
+      setState(() {});
+
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(builder: (context) => MainNavScreen()),
+        (route) =>
+            false, 
+      );
     }
   }
 
@@ -150,19 +147,14 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                   ScaffoldMessenger.of(context)
                       .showSnackBar(SnackBar(content: Text('Form Is valid')));
                   updateProfile();
-                  setState(() {
-                    
-                  });
+                  setState(() {});
                 }
               },
               child: Icon(Icons.navigate_next_outlined, size: 22),
             ),
-            
           ],
         ),
       ),
     );
   }
-
-  
 }
