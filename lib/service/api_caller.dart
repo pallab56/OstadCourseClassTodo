@@ -1,11 +1,15 @@
 import 'dart:convert';
 
+import 'package:classtodoapp/controller/auth_controller.dart';
 import 'package:classtodoapp/models/api_response.dart';
 import 'package:http/http.dart';
 
 class ApiCaller {
   static Future<ApiResponse> getRequest({required String url}) async {
-    Response response = await get(Uri.parse(url), headers: {});
+    Response response = await get(Uri.parse(url), 
+    headers: {
+      'token':AuthController.token ?? '',
+    });
 
     print("URL === $url");
     print("URL Body====${response.body}");
@@ -29,7 +33,8 @@ class ApiCaller {
     Response response = await post(Uri.parse(url), 
     headers: {
       "Content-Type":"application/json",
-      "Accept":"application/json"
+      "Accept":"application/json",
+      'token':AuthController.token ?? '',
     },
     body: body != null?jsonEncode(body):null
     );

@@ -7,22 +7,22 @@ class AuthController {
   static String? token;
   static UserModel? userData;
 
-  static Future saveUserData(UserModel model, String token) async {
+  static Future saveUserData(UserModel model, String tokenValue) async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    sharedPreferences.setString('token', token);
+    sharedPreferences.setString('token', tokenValue);
     sharedPreferences.setString('user_data', jsonEncode(model.toJson()));
 
-    token = token;
+    token = tokenValue;
     userData = model;
   }
 
   static Future getUserData() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
 
-    String? token = sharedPreferences.getString('token');
-    if (token != null) {
-      token = token;
+    String? savedToken = sharedPreferences.getString('token');
+    if (savedToken != null) {
+      token = savedToken;
     }
 
     String? user = sharedPreferences.getString('user_data');
