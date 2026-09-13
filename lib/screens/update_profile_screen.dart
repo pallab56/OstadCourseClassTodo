@@ -127,19 +127,19 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 if (value!.isNotEmpty && value.length < 8) {
                   return 'Password length atleast 8';
                 }
-                if (value!.isNotEmpty && value.length > 15) {
+                if (value.isNotEmpty && value.length > 15) {
                   return 'Password length atlmost 15';
                 }
-                if (value!.isNotEmpty && !RegExp(r'[A-Z]').hasMatch(value)) {
+                if (value.isNotEmpty && !RegExp(r'[A-Z]').hasMatch(value)) {
                   return 'Password must contain an uppercase letter';
                 }
-                if (value!.isNotEmpty && !RegExp(r'[a-z]').hasMatch(value)) {
+                if (value.isNotEmpty && !RegExp(r'[a-z]').hasMatch(value)) {
                   return 'Password must contain a lowercase letter';
                 }
-                if (value!.isNotEmpty && !RegExp(r'[0-9]').hasMatch(value)) {
+                if (value.isNotEmpty && !RegExp(r'[0-9]').hasMatch(value)) {
                   return 'Password must contain a number';
                 }
-                if (value!.isNotEmpty && !RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+                if (value.isNotEmpty && !RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
                   return 'Password must contain a special character';
                 }
                 return null;

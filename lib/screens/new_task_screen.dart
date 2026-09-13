@@ -3,6 +3,7 @@ import 'package:classtodoapp/models/task_model.dart';
 import 'package:classtodoapp/models/task_status_count_model.dart';
 import 'package:classtodoapp/service/api_caller.dart';
 import 'package:classtodoapp/utils/app_url.dart';
+import 'package:classtodoapp/utils/const.dart';
 import 'package:classtodoapp/widgets/task_card.dart';
 import 'package:classtodoapp/widgets/task_card_count.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +72,7 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      backgroundColor: Colors.blueGrey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -81,10 +82,14 @@ class _NewTaskScreenState extends State<NewTaskScreen> {
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
                 itemCount: listTaskStatusCount.length,
-                itemBuilder: (context, index) => TaskCardCount(
+                itemBuilder: (context, index) {
+                  final Color color = APpConst.getAvatarColor(listTaskStatusCount[index].sId.toString());
+                  return TaskCardCount(
+                    color:color ,
                   count: listTaskStatusCount[index].sum!.toInt(),
                   title: listTaskStatusCount[index].sId.toString(),
-                ),
+                );
+                },
                 separatorBuilder: (context, index) => SizedBox(width: 7),
               ),
             ),

@@ -38,6 +38,7 @@ class _MainNavScreenState extends State<MainNavScreen> {
         child: Icon(Icons.add),
       ),
       bottomNavigationBar: NavigationBar(
+        backgroundColor: Colors.blueGrey.shade100,
         onDestinationSelected: (int index) {
           selectedIndex = index;
           setState(() {});
