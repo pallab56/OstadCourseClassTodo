@@ -11,7 +11,8 @@ class MainAppBar extends StatelessWidget implements PreferredSize {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.green,
+      elevation: 0,
+      backgroundColor: Colors.grey,
       title: InkWell(
         onTap: () {
           Navigator.push(

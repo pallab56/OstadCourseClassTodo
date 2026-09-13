@@ -2,6 +2,7 @@ import 'package:classtodoapp/models/api_response.dart';
 import 'package:classtodoapp/models/task_model.dart';
 import 'package:classtodoapp/service/api_caller.dart';
 import 'package:classtodoapp/utils/app_url.dart';
+import 'package:classtodoapp/utils/const.dart';
 import 'package:classtodoapp/widgets/task_card.dart';
 import 'package:flutter/material.dart';
 
@@ -56,7 +57,11 @@ class _CancelTaskScreenState extends State<CancelTaskScreen> {
               child: ListView.builder(
                 itemCount: taskList.length,
                 itemBuilder: (context, index) {
+                  final Color taskCardColor = APpConst.getAvatarColor(
+                    taskList[index].title.toString(),
+                  );
                   return TaskCard(
+                    taskCardColor: taskCardColor,
                     taskmodel: taskList[index],
                     cardColor: Colors.red,
                     refreshParent: () {

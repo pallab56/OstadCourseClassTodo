@@ -8,11 +8,13 @@ class TaskCard extends StatefulWidget {
   final TaskModel taskmodel;
   final Color cardColor;
   final VoidCallback refreshParent;
+  final Color taskCardColor;
   const TaskCard({
     super.key,
     required this.taskmodel,
     required this.cardColor,
     required this.refreshParent,
+    required this.taskCardColor,
   });
 
   @override
@@ -36,10 +38,7 @@ class _TaskCardState extends State<TaskCard> {
 
   Future<void> updateTaskStatus(String status) async {
     ApiResponse response = await ApiCaller.getRequest(
-      url: AppUrl.updateTaskStaus(
-        widget.taskmodel.sId!,
-        status,
-      ),
+      url: AppUrl.updateTaskStaus(widget.taskmodel.sId!, status),
     );
     setState(() {});
     if (response.isScuccess) {
@@ -122,22 +121,23 @@ class _TaskCardState extends State<TaskCard> {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      color: Colors.blueGrey[100],
+      color: widget.taskCardColor,
       child: ListTile(
         title: Text(
           widget.taskmodel.title.toString(),
-          style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+          style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w600),
         ),
 
         subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(widget.taskmodel.description.toString()),
+            Text(widget.taskmodel.description.toString(),style: TextStyle(color: Colors.white,),),
             SizedBox(height: 7),
-            Text(widget.taskmodel.createdDate.toString()),
+            Text(widget.taskmodel.createdDate.toString(),style: TextStyle(color: Colors.white,),),
             Row(
               children: [
                 Chip(
+                  side: BorderSide.none,
                   label: Text(
                     widget.taskmodel.status.toString(),
                     style: TextStyle(color: Colors.white),
@@ -149,7 +149,6 @@ class _TaskCardState extends State<TaskCard> {
                 IconButton(
                   onPressed: () {
                     showChnageStatusDialog();
-                    
                   },
                   icon: Icon(Icons.edit_note),
                   color: const Color.fromARGB(255, 233, 175, 88),
@@ -160,7 +159,7 @@ class _TaskCardState extends State<TaskCard> {
                     deleteTask();
                   },
                   icon: Icon(Icons.delete),
-                  color: Colors.red,
+                  color: const Color.fromARGB(255, 243, 24, 8),
                 ),
               ],
             ),

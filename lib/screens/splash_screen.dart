@@ -37,8 +37,21 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: ScreenBackground(
-        child: Center(
-          child: Image.asset(AssetPath.logoImagePath, width: 300, height: 300),
+        child: Stack(
+          
+          children: [
+            Center(child: Image.asset(AssetPath.splashLogoImagePath, width: 300, )),
+            Align(
+              alignment: AlignmentGeometry.bottomCenter,
+              
+               
+               child:  Padding(
+                 padding: const EdgeInsets.only(bottom: 60.0),
+                 child: Text("Todo APP",textAlign: TextAlign.center, style: TextStyle(color: const Color.fromARGB(255, 45, 24, 94), fontSize: 36,fontWeight: FontWeight.w500),),
+               ),
+              
+            ),
+          ],
         ),
       ),
     );

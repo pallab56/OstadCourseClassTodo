@@ -7,7 +7,7 @@ class APpConst {
       Colors.purple,
       Colors.teal,
       Colors.orange,
-      Colors.pink,
+      Colors.pink.shade300,
       Colors.green,
       Colors.indigo,   
     ];

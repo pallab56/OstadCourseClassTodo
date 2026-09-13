@@ -72,6 +72,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      // backgroundColor: Color(value),
       appBar: MainAppBar(),
       body: ScreenBackground(child: signUpBodyUi()),
     );
@@ -85,29 +86,32 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * .1),
-            Text(
-              "Update Profile",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            SizedBox(height: 15,),
+            SizedBox(height: MediaQuery.sizeOf(context).height * .04),
+            
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                ProfileImage(radius:35),
+                ProfileImage(radius:45),
               ],
             ),
+            SizedBox(height: 15,),
+            Text(
+              "Update Profile",
+              style: Theme.of(context).textTheme.titleLarge!.copyWith(color: Colors.black)
+            ),
+            
+            
             SizedBox(height: 20),
             TextFormField(
               controller: emailController,
               validator: (value) {
-                // if (value == null || value.isEmpty) {
-                //   return 'Email is required';
-                // }
-                // final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-                // if (!emailRegex.hasMatch(value)) {
-                //   return 'Enter a valid Email Address';
-                // }
+                if (value == null || value.isEmpty) {
+                  return 'Email is required';
+                }
+                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                if (!emailRegex.hasMatch(value)) {
+                  return 'Enter a valid Email Address';
+                }
                 return null;
               },
               decoration: InputDecoration(hintText: 'Email'),

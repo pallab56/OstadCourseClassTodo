@@ -2,6 +2,7 @@ import 'package:classtodoapp/models/api_response.dart';
 import 'package:classtodoapp/models/task_model.dart';
 import 'package:classtodoapp/service/api_caller.dart';
 import 'package:classtodoapp/utils/app_url.dart';
+import 'package:classtodoapp/utils/const.dart';
 import 'package:classtodoapp/widgets/task_card.dart';
 import 'package:flutter/material.dart';
 
@@ -47,7 +48,7 @@ class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey.shade100,
+      // backgroundColor: Colors.grey.shade100,
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -56,7 +57,11 @@ class _ProgressTaskScreenState extends State<ProgressTaskScreen> {
               child: ListView.builder(
                 itemCount: taskList.length,
                 itemBuilder: (context, index) {
+                  final Color taskCardColor = APpConst.getAvatarColor(
+                    taskList[index].title.toString(),
+                  );
                   return TaskCard(
+                    taskCardColor: taskCardColor,
                     taskmodel: taskList[index],
                     cardColor: Colors.purple,
                     refreshParent: () {

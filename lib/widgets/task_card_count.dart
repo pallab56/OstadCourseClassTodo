@@ -10,21 +10,23 @@ class TaskCardCount extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 100,
-      width: 130,
+      width: 100,
       child: Card(
         color: color,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 5),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                count.toString(),
-                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
-              ),
+              
               Text(
                 title,
-                style: TextStyle(color: Colors.white,fontSize: 16, fontWeight: FontWeight.w600),
+                style: TextStyle(color: Colors.white,fontSize: 18, fontWeight: FontWeight.w600),
+              ),
+              Text(
+                "${count.toString()} tasks",
+                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.w600),
               ),
             ],
           ),

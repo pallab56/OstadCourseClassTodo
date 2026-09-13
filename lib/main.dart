@@ -12,23 +12,22 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
       title: 'Flutter Demo',
-      theme: ThemeData(
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
-      
-        textTheme: TextTheme(
-          titleLarge: TextStyle(
-            fontSize: 28,
-            fontWeight: FontWeight.w800,
-          ),
-        ),
+      darkTheme: ThemeData.dark(useMaterial3: true).copyWith(
+        scaffoldBackgroundColor: Colors.transparent,
+        textTheme:
+            TextTheme(
+              titleLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
+            ).apply(
+              bodyColor:
+                  Colors.white, // Applies to body, titles, headlines, etc.
+              displayColor:
+                  Colors.white, // Applies to ultra-large display texts
+            ),
         inputDecorationTheme: InputDecorationTheme(
           fillColor: Colors.white,
           filled: true,
-          hintStyle: TextStyle(
-            color: Colors.grey,
-          ),
+          hintStyle: TextStyle(color: Colors.grey),
           enabledBorder: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(8),
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
           border: OutlineInputBorder(
             borderSide: BorderSide.none,
             borderRadius: BorderRadius.circular(8),
-          )
+          ),
         ),
         filledButtonTheme: FilledButtonThemeData(
           style: FilledButton.styleFrom(
@@ -45,12 +44,50 @@ class MyApp extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 12),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8),
-            )
-          )
-        )
+            ),
+          ),
+        ),
+      ),
+      theme: ThemeData(
+        
+        colorScheme: .fromSeed(seedColor: Colors.green,).copyWith(
+          
+        ),
+
+        textTheme:
+            TextTheme(
+              titleLarge: TextStyle(fontSize: 28, fontWeight: FontWeight.w800),
+            ).apply(
+              bodyColor:
+                  Colors.white, // Applies to body, titles, headlines, etc.
+              displayColor:
+                  Colors.white, // Applies to ultra-large display texts
+            ),
+        inputDecorationTheme: InputDecorationTheme(
+          fillColor: Colors.white,
+          filled: true,
+          hintStyle: TextStyle(color: Colors.grey),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(8),
+          ),
+          border: OutlineInputBorder(
+            borderSide: BorderSide.none,
+            borderRadius: BorderRadius.circular(8),
+          ),
+        ),
+        filledButtonTheme: FilledButtonThemeData(
+          style: FilledButton.styleFrom(
+            backgroundColor: Colors.green,
+            fixedSize: Size.fromWidth(double.maxFinite),
+            padding: EdgeInsets.symmetric(vertical: 12),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(8),
+            ),
+          ),
+        ),
       ),
       home: SplashScreen(),
     );
   }
 }
-
