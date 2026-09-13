@@ -71,7 +71,7 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       appBar: MainAppBar(),
       body: ScreenBackground(child: signUpBodyUi()),
     );
@@ -123,27 +123,25 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
               obscureText: true,
               controller: passwordController,
               validator: (value) {
-                // if (value == null || value.isEmpty) {
-                //   return 'Password Is required';
-                // }
-                // if (value.length < 8) {
-                //   return 'Password length atleast 8';
-                // }
-                // if (value.length > 15) {
-                //   return 'Password length atlmost 15';
-                // }
-                // if (!RegExp(r'[A-Z]').hasMatch(value)) {
-                //   return 'Password must contain an uppercase letter';
-                // }
-                // if (!RegExp(r'[a-z]').hasMatch(value)) {
-                //   return 'Password must contain a lowercase letter';
-                // }
-                // if (!RegExp(r'[0-9]').hasMatch(value)) {
-                //   return 'Password must contain a number';
-                // }
-                // if (!RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
-                //   return 'Password must contain a special character';
-                // }
+                
+                if (value!.isNotEmpty && value.length < 8) {
+                  return 'Password length atleast 8';
+                }
+                if (value!.isNotEmpty && value.length > 15) {
+                  return 'Password length atlmost 15';
+                }
+                if (value!.isNotEmpty && !RegExp(r'[A-Z]').hasMatch(value)) {
+                  return 'Password must contain an uppercase letter';
+                }
+                if (value!.isNotEmpty && !RegExp(r'[a-z]').hasMatch(value)) {
+                  return 'Password must contain a lowercase letter';
+                }
+                if (value!.isNotEmpty && !RegExp(r'[0-9]').hasMatch(value)) {
+                  return 'Password must contain a number';
+                }
+                if (value!.isNotEmpty && !RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(value)) {
+                  return 'Password must contain a special character';
+                }
                 return null;
               },
               decoration: InputDecoration(
