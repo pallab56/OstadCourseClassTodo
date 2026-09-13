@@ -23,6 +23,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
 
+  FocusNode emailFocus = FocusNode();
+  FocusNode firstNameFocus = FocusNode();
+
   onTapSignUp() async {
     final ApiResponse response = await ApiCaller.postRequest(
       url: AppUrl.signUpUrl,
@@ -45,7 +48,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: true,
+      resizeToAvoidBottomInset: false,
       body: ScreenBackground(child: signUpBodyUi()),
     );
   }
@@ -63,6 +66,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
             SizedBox(height: 20),
             TextFormField(
               controller: emailController,
+              focusNode: emailFocus,
+              onTapOutside: (_) {
+                FocusManager.instance.primaryFocus!.unfocus();
+              },
+
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Email is required';
@@ -85,6 +93,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             TextFormField(
               obscureText: true,
               controller: passwordController,
+
               validator: (value) {
                 if (value == null || value.isEmpty) {
                   return 'Password Is required';

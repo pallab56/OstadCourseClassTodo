@@ -25,10 +25,9 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
     );
 
     if (response.isScuccess) {
-      Navigator.pushReplacement(
+      Navigator.pushAndRemoveUntil(
         context,
-        MaterialPageRoute(builder: (context) => MainNavScreen()),
-      );
+        MaterialPageRoute(builder: (context) => MainNavScreen()),(route)=>false);
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text(response.responseData)));
@@ -65,7 +64,7 @@ class _AddTaskScreenState extends State<AddTaskScreen> {
                   SizedBox(height: 15),
                   FilledButton(
                     onPressed: () {
-                      createTask(titleController.text, descController.text);
+                      createTask(titleController.text.trim(), descController.text.trim());
                     },
                     child: Icon(Icons.navigate_next_outlined, size: 22),
                   ),

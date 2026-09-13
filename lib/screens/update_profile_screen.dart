@@ -5,6 +5,7 @@ import 'package:classtodoapp/screens/main_nav_screen.dart';
 import 'package:classtodoapp/service/api_caller.dart';
 import 'package:classtodoapp/utils/app_url.dart';
 import 'package:classtodoapp/widgets/main_app_bar.dart';
+import 'package:classtodoapp/widgets/profile_image.dart';
 import 'package:classtodoapp/widgets/screen_background.dart';
 import 'package:classtodoapp/widgets/text_field.dart';
 import 'package:flutter/material.dart';
@@ -84,10 +85,17 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: MediaQuery.sizeOf(context).height * .15),
+            SizedBox(height: MediaQuery.sizeOf(context).height * .1),
             Text(
               "Update Profile",
               style: Theme.of(context).textTheme.titleLarge,
+            ),
+            SizedBox(height: 15,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ProfileImage(radius:35),
+              ],
             ),
             SizedBox(height: 20),
             TextFormField(
@@ -138,7 +146,9 @@ class _UpdateProfileScreenState extends State<UpdateProfileScreen> {
                 // }
                 return null;
               },
-              decoration: InputDecoration(hintText: 'password'),
+              decoration: InputDecoration(
+                labelText: "Password",
+                hintText: "leave blank if don't want to change"),
             ),
             SizedBox(height: 25),
             FilledButton(
